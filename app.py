@@ -138,7 +138,7 @@ def submit_post(user_id):
 def show_post(post_id):
 
     post = Post.query.get(post_id)
-    user = post.user_details
+    user = post.users
 
     return render_template('displayPost.html',post=post,user=user)
 
@@ -169,7 +169,7 @@ def delete_post(post_id):
 
     
     post = Post.query.get(post_id)
-    user_id = post.user_details.id
+    user_id = post.users.id
 
     db.session.delete(post)
     db.session.commit()

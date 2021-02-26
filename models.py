@@ -11,7 +11,6 @@ def connect_db(app):
 
 class User(db.Model):
     """Creates new user"""
-
     __tablename__= "users"
 
     def __repr__(self):
@@ -26,8 +25,9 @@ class User(db.Model):
 
     image_url = db.Column(db.String(1000))
 
-class Post(db.Model):
+    posts = db.relationship('Post', backref='users',cascade="all, delete-orphan")
 
+class Post(db.Model):
     __tablename__='posts'
 
     def __repr__(self):
@@ -44,6 +44,6 @@ class Post(db.Model):
 
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable=False,)
 
-    user_details = db.relationship('User', backref='posts')
+    # user_details = db.relationship('User', backref='posts')
 
     # user_id fk

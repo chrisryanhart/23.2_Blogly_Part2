@@ -71,14 +71,14 @@ class UserViewsTestCase(TestCase):
             self.assertIn("<h3>Petry Jones</h3>",html)
 
 
-    # def test_delete_user(self):
-    #     with app.test_client() as client:
-    #         d={'user_id': f'{self.user_id}', 'post_id'}
-    #         resp = client.post(f'/users/{self.user_id}/delete',data=d,follow_redirects=True)
-    #         html = resp.get_data(as_text=True)
+    def test_delete_user(self):
+        with app.test_client() as client:
+            # d={'user_id': f'{self.user_id}', 'post_id'},
+            resp = client.post(f'/users/{self.user_id}/delete',follow_redirects=True)
+            html = resp.get_data(as_text=True)
 
-    #         self.assertEqual(resp.status_code,200)
-    #         self.assertNotIn('Petry Jones',html)
+            self.assertEqual(resp.status_code,200)
+            self.assertNotIn('Petry Jones',html)
 
 
 
